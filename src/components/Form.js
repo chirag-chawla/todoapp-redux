@@ -1,29 +1,44 @@
 import React,{useState, useEffect} from 'react'
 import { useDispatch } from 'react-redux';
-import { addTodo, handleEditSubmit } from '../redux/todoapp/actions';
+import { fetchTodo, addTodo, handleEditSubmit } from '../redux/todoapp/actions';
 import './form.css';
 import {initialState} from '../redux/todoapp/reducers/operations';
 
 export const Form = ({editFormVisibility, editTodo, cancelUpdate}) => {
 
-  // dispatch function to dispatch an action
+    // todo value state for normal add todo form
+    const [todoValue, setTodoValue]=useState([]);
+
+    // state for if someone changes the (to edit) value in update form
+    const [editValue, setEditValue]=useState(todoValue);
+
+const fetchInfo = () => { 
+return fetch('https://dummyjson.com/todos') 
+        .then((res) => res.json())
+        .then(res=>{
+          const fetchState = res.todos.map(item => {
+            return {
+              id: item.id, 
+              title: item.todo, 
+              description: item.todo, 
+              date: "",
+              priority: "Low",
+            }
+          })
+          setTodoValue(fetchState);
+          dispatch(fetchTodo(fetchState));
+})
+}
+console.log(todoValue,"TODOO");
+useEffect(() => {
+	fetchInfo();
+}, [])
+
   const dispatch = useDispatch();
-  // const initial = {
-  //   id: "",
-  //   title: "",
-  //   description: "",
-  //   date: "",
-  //   priority: "",
-  // }
   // let storageTodoList = JSON.parse(localStorage.getItem("todoList"));
   // if(storageTodoList && storageTodoList.length){
   //   initialState = storageTodoList;
   // }
-  // todo value state for normal add todo form
-  const [todoValue, setTodoValue]=useState(initialState);
-
-  // state for if someone changes the (to edit) value in update form
-  const [editValue, setEditValue]=useState(todoValue);
 
   // useEffect is to show the (to edit) value in update form
   useEffect(()=>{

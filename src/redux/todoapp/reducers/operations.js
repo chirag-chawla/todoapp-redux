@@ -1,14 +1,19 @@
 /* eslint-disable array-callback-return */
-import { ADD_TODO, REMOVE_TODO, UPDATE_TODO } from "../actions";
+import { FETCH_TODO, ADD_TODO, REMOVE_TODO, UPDATE_TODO } from "../actions";
 
 export const initialState=[
-    {id:1, title: 'title1', description: 'Buy Laptop', date: "",priority: "High"},
-    {id:2, title: 'title2', description: 'Master Redux', date: "", priority: "Low"},
-    {id:3, title: 'title3', description: 'Watering Plants', date: "", priority: "High"},
+    // {id:1, title: 'title1', description: 'Buy Laptop', date: "",priority: "High"},
+    // {id:2, title: 'title2', description: 'Master Redux', date: "", priority: "Low"},
+    // {id:3, title: 'title3', description: 'Watering Plants', date: "", priority: "High"},
 ];
 
 export const operationsReducer=(state=initialState, action)=>{
     switch(action.type){
+        case FETCH_TODO:
+            console.log(action.payload);
+            const fetchTodoList= [...state, ...action.payload];
+            //localStorage.setItem("todoList",JSON.stringify(todoList));
+            return fetchTodoList;
         case ADD_TODO:
             const todoList= [...state, action.payload];
             //localStorage.setItem("todoList",JSON.stringify(todoList));
