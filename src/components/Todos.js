@@ -15,7 +15,7 @@ export const Todos = ({handleEditClick, editFormVisibility}) => {
   return todos.map((todo,key)=>(
     <div className='todo-box'>
         <div className='content' key={uuid()}>
-            <p contentEditable="true">
+            <p>
                 {todo.title}
             </p>
             <p>{todo.description}</p>
@@ -25,7 +25,7 @@ export const Todos = ({handleEditClick, editFormVisibility}) => {
         <div className='actions-box'>
               {editFormVisibility===false&&(
                 <>
-                  <span onClick={()=>handleEditClick(todo)}><Icon icon={edit2}/></span>
+                  <span onClick={()=>handleEditClick({todo})}><Icon icon={edit2}/></span>
                   <span onClick={()=>dispatch(removeTodo(todo.title))}><Icon icon={trash}/></span>
                 </>
               )}

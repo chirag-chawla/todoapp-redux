@@ -2,11 +2,22 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: #faf9ef;
+}
+
+html {
+  font-family: "Montserrat", sans-serif;
+  
+}
+
+body {
+  background: #eee;
+  padding: 0 16px;
 }
 
 .wrapper{
   max-width: 1440px;
-  width: 100%;
+  width: 150%;
   overflow-x: hidden;
   overflow-y: auto;
   margin: 0 auto;
@@ -27,7 +38,7 @@
 }
 
 .todo-box{
-  width: 400px;
+  width: 800px;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
@@ -36,6 +47,7 @@
 
 .todo-box .content{
   display: flex;
+  color: brown;
 }
 
 .todo-box .content p{

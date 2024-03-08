@@ -14,14 +14,11 @@ function App() {
   const [editFormVisibility, setEditFormVisibility]=useState(false);
 
   // editTodo state
-  const [editTodo, setEditTodo]=useState('');
+  const [editTodo, setEditTodo]=useState({});
 
-  const [editDate, setEditDate] = useState('');
-
-  const [editPriority, setEditPriority] = useState('');
 
   // this function will trigger when someone clicks the edit icon
-  const handleEditClick=(todo)=>{
+  const handleEditClick=({todo})=>{
     setEditFormVisibility(true);
     setEditTodo(todo);
     console.log("Todo is " + todo);
@@ -32,12 +29,16 @@ function App() {
     setEditFormVisibility(false);
   }
 
+  
+
+
     return (
     <div className="wrapper">
       <br></br>
       <h1 className="text-center">TODO-APP USING REACT-REDUX</h1>
       <Form editFormVisibility={editFormVisibility} editTodo={editTodo}
-      cancelUpdate={cancelUpdate} editDate={editDate} editPriority={editPriority} />
+      cancelUpdate={cancelUpdate} />
+      <br></br>
       <Todos handleEditClick={handleEditClick} editFormVisibility={editFormVisibility}/>
     </div>
   );
